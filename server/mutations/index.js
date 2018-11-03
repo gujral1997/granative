@@ -2,8 +2,8 @@ import {
     GraphQLObjectType,
     GraphQLString
 } from 'graphql'
-// const UserType = require('./types/user_type');
-// const AuthService = require('../services/auth');
+import UserType from '../types/user_type'
+import AuthService from '../services/auth'
 
 export default new GraphQLObjectType({
   name: 'Mutation',
