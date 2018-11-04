@@ -1,5 +1,13 @@
 import React from 'react'
-import {View, StyleSheet, TextInput, TouchableOpacity, Text, ActivityIndicator, ImageBackground} from 'react-native'
+import {
+    View,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    Text,
+    ActivityIndicator,
+    ImageBackground
+} from 'react-native'
 import {Actions, ActionConst} from  'react-native-router-flux'
 
 import assets from '../../themes/assets'
