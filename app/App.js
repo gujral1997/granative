@@ -1,30 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, AsyncStorage} from 'react-native'
 import ApolloClient from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink, concat } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 
-const graphqlUrl = `http://localhost:3000/graphql`
-const httpLink = new HttpLink({ uri: graphqlUrl });
-
-// adding auth headers
-const authMiddleware = new ApolloLink((operation, forward) => {
-  fetchSession().then((session) => {
-    operation.setContext({
-      headers: {
-        authorization: session ? "Bearer " + session.token : null
-      }
-    });
-  })
-  return forward(operation);
-});
-
+const graphqlUrl = `http://172.16.36.191:3000//graphql`
+const link = new HttpLink({ uri: graphqlUrl });
 
 // Creating a client instance
 const client = new ApolloClient({
-  link: concat(authMiddleware, httpLink),
+  link,
   cache: new InMemoryCache({
     addTypename: false
   })
