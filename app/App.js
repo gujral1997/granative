@@ -1,29 +1,22 @@
 import React from 'react'
-import { StyleSheet, AsyncStorage} from 'react-native'
-import ApolloClient from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink, concat } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
+import { StyleSheet, Text, View } from 'react-native'
+import { ApolloProvider } from 'react-apollo'
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-client-preset'
+import ListPage from './components/ListPage'
 
-const graphqlUrl = `http://172.16.36.191:3000//graphql`
-const link = new HttpLink({ uri: graphqlUrl });
+// __SIMPLE_API_ENDPOINT__ looks like: 'https://api.graph.cool/simple/v1/__SERVICE_ID__'
+const httpLink = new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cjr0oq4ya6vlm0148doxq48rh' })
 
-// Creating a client instance
 const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache({
-    addTypename: false
-  })
-});
-
-import Routes from './src/Routes'
+  link: httpLink,
+  cache: new InMemoryCache()
+})
 
 export default class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Routes/>
+        <ListPage />
       </ApolloProvider>
     )
   }
